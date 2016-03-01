@@ -23,3 +23,10 @@ In order to publish to your site:
 ``` ./pub.sh -d "Give a description" img.png ```
 
 This will send your image and decription to your micro blog online
+
+## Todo
+
+ - Probably make more sense to use node
+ - Bash script is error prone and not well coded
+ - Need to verify dependency trough the script
+ - Installation script? (Would install the index.html and content.json to remote)
