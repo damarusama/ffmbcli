@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js" ></script>
+<style>
+body {}
+.post {}
+.post img {}
+.post h1 {}
+#content {}
+</style>
+</head>
+<body onload="init()">
+ 
+  <script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+      {{#each posts}}
+      <div class="post">
+      <img src="{{img}}">
+      <h2>{{desc}}</h2>
+      </div>
+{{/each}}
+  </script>
+
+<h1> flat file micro blog </h1>
+  <div id="content">
+  </div>
+</body>
+
+<script type="text/javascript">
+        var xhr;
+        function init() {
+        xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = xhr_onReadyStateChangeHandler;
+        xhr.open("GET", "content.json");
+        xhr.send(null);
+        }
+        function xhr_onReadyStateChangeHandler(evt) {
+        if ((xhr.readyState === 4) && (xhr.status === 200)) {
+        var src = document.getElementById("entry-template").innerHTML;
+        var tmpl = Handlebars.compile(src);
+        var json = JSON.parse(xhr.responseText);
+        document.getElementById("content").innerHTML = tmpl(json);
+        }
+        }
+</script>
+
+</html>
